@@ -1,4 +1,9 @@
-import { animateDiagonalTopLeft, animateDiagonalBottomRight } from './animations'
+import {
+  animateDiagonalTopLeft,
+  animateDiagonalTopRight,
+  animateDiagonalBottomLeft,
+  animateDiagonalBottomRight,
+} from './animations'
 import { colors } from './constants/colors'
 import { gridPads } from './constants/pads'
 import { sendPadColor, emptyGrid } from './output'
@@ -19,6 +24,14 @@ export const inputListener = (message: WebMidi.MIDIMessageEvent): void => {
 
     if (message.data[1] === gridPads[0][0]) {
       animateDiagonalTopLeft().then(emptyGrid)
+    }
+
+    if (message.data[1] === gridPads[0][7]) {
+      animateDiagonalTopRight().then(emptyGrid)
+    }
+
+    if (message.data[1] === gridPads[7][0]) {
+      animateDiagonalBottomLeft().then(emptyGrid)
     }
 
     if (message.data[1] === gridPads[7][7]) {

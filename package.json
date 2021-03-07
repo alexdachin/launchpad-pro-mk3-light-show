@@ -3,6 +3,7 @@
   "description": "Creating light shows for Novation Launchpad Pro MK3",
   "scripts": {
     "build": "webpack",
+    "build:watch": "yarn build --watch --progress",
     "lint": "eslint src --ext ts",
     "lint:fix": "yarn lint --fix"
   },
