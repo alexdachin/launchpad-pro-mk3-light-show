@@ -1,3 +1,4 @@
+import { createDomElements } from './dom-interaction'
 import { inputListener } from './input-listener'
 import { saveOutPort } from './output'
 
@@ -30,6 +31,7 @@ export const setup = (): void => {
     .then((access) => {
       addListeners(access.inputs)
       saveLaunchpad(access.outputs)
+      createDomElements()
     })
     .catch((error) => {
       console.error('Could not access MIDI devices.', error)

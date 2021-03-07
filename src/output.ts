@@ -1,4 +1,5 @@
 import { colors } from './constants/colors'
+import { gridPads } from './constants/pads'
 
 let outPort: WebMidi.MIDIOutput | undefined
 
@@ -18,22 +19,5 @@ export const saveOutPort = (port: WebMidi.MIDIOutput): void => {
 export const sendPadColor = (pad: number, color: number): void =>
   send([144, pad, color])
 
-export const sendEdgeColor = (color: number): void => {
-  [...Array(8)]
-    .flatMap((_, i) => [
-      (i + 1) * 10, // left
-      (i + 1) * 10 + 9, // right
-      i + 91, // top
-      i + 101, // bottom
-    ])
-    .forEach(pad => sendPadColor(pad, color))
-}
-
-export const sendAllColor = (color: number): void => {
-  [...Array(108)]
-    .map((_, i) => i + 1)
-    .map(pad => sendPadColor(pad, color))
-}
-
-export const emptyAll = (): void =>
-  sendAllColor(colors.empty)
+export const emptyGrid = (): void =>
+  gridPads.forEach(row => row.forEach(pad => sendPadColor(pad, colors.empty)))

@@ -1,5 +1,5 @@
 import { colors } from '../constants/colors'
-import { grid } from '../constants/grid'
+import { gridPads } from '../constants/pads'
 import { sendPadColor } from '../output'
 
 export const animateDiagonalTopLeft = (): Promise<void> => new Promise((resolve) => {
@@ -11,7 +11,7 @@ export const animateDiagonalTopLeft = (): Promise<void> => new Promise((resolve)
       return resolve()
     }
 
-    grid.forEach((row, i) => row.forEach((pad, j) => {
+    gridPads.forEach((row, i) => row.forEach((pad, j) => {
       if (i + j === frame) {
         sendPadColor(pad, colors.yellow)
       }
@@ -30,7 +30,7 @@ export const animateDiagonalBottomRight = (): Promise<void> => new Promise((reso
       return resolve()
     }
 
-    grid.forEach((row, i) => row.forEach((pad, j) => {
+    gridPads.forEach((row, i) => row.forEach((pad, j) => {
       if (i + j === 14 - frame) {
         sendPadColor(pad, colors.pink)
       }
